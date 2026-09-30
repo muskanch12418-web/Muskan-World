@@ -1,0 +1,2739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Things That Feel Like Me — Muskan</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================================================
+   ROOT
+========================================================= */
+
+:root{
+    --black:#060606;
+    --black2:#0d0c0b;
+    --black3:#141210;
+    --cream:#f4ede4;
+    --cream2:#e7dacc;
+    --muted:#9f9890;
+    --gold:#c5a77b;
+    --gold2:#8d704d;
+    --red:#8f1825;
+    --line:rgba(255,255,255,.13);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:var(--black);
+    color:var(--cream);
+    font-family:"DM Sans",sans-serif;
+    overflow-x:hidden;
+}
+
+body:before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:9990;
+    opacity:.045;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
+}
+
+img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+button{
+    font-family:inherit;
+}
+
+
+/* =========================================================
+   LOADER
+========================================================= */
+
+.loader{
+    position:fixed;
+    inset:0;
+    background:#050505;
+    z-index:10000;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    transition:1s ease;
+}
+
+.loader.hide{
+    opacity:0;
+    visibility:hidden;
+}
+
+.loader h1{
+    font-family:"Cormorant Garamond",serif;
+    font-size:52px;
+    font-weight:500;
+    letter-spacing:4px;
+}
+
+.loader p{
+    color:var(--gold);
+    font-size:9px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    margin-top:10px;
+}
+
+.loader-line{
+    width:110px;
+    height:1px;
+    background:var(--gold);
+    margin-top:20px;
+    animation:loaderLine 1.5s infinite;
+}
+
+@keyframes loaderLine{
+    0%{transform:scaleX(0);opacity:.2}
+    50%{transform:scaleX(1);opacity:1}
+    100%{transform:scaleX(0);opacity:.2}
+}
+
+
+/* =========================================================
+   CURSOR
+========================================================= */
+
+.cursor{
+    position:fixed;
+    width:7px;
+    height:7px;
+    background:#fff;
+    border-radius:50%;
+    pointer-events:none;
+    z-index:9998;
+    transform:translate(-50%,-50%);
+    mix-blend-mode:difference;
+}
+
+.cursor-ring{
+    position:fixed;
+    width:38px;
+    height:38px;
+    border:1px solid rgba(255,255,255,.45);
+    border-radius:50%;
+    pointer-events:none;
+    z-index:9997;
+    transform:translate(-50%,-50%);
+    transition:.08s linear;
+}
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.navbar{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    padding:24px 7%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    z-index:2000;
+    transition:.5s;
+}
+
+.navbar.scrolled{
+    background:rgba(5,5,5,.82);
+    backdrop-filter:blur(20px);
+    padding:16px 7%;
+    border-bottom:1px solid var(--line);
+}
+
+.logo{
+    font-family:"Cormorant Garamond",serif;
+    font-size:29px;
+    letter-spacing:3px;
+}
+
+.nav-links{
+    display:flex;
+    gap:34px;
+}
+
+.nav-links a{
+    font-size:9px;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    color:#ddd;
+    position:relative;
+}
+
+.nav-links a:after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-7px;
+    width:0;
+    height:1px;
+    background:var(--gold);
+    transition:.4s;
+}
+
+.nav-links a:hover:after{
+    width:100%;
+}
+
+.menu{
+    display:none;
+    font-size:25px;
+    cursor:pointer;
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.buttons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+}
+
+.btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:9px;
+    min-height:42px;
+    padding:12px 22px;
+    border:1px solid rgba(255,255,255,.3);
+    border-radius:50px;
+    font-size:9px;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    transition:.4s ease;
+}
+
+.btn:hover{
+    background:var(--cream);
+    color:#111;
+    border-color:var(--cream);
+    transform:translateY(-3px);
+}
+
+.btn-gold{
+    border-color:var(--gold);
+    color:#e4cda9;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+    min-height:100vh;
+    padding:105px 7% 55px;
+    display:grid;
+    grid-template-columns:.85fr 1.15fr;
+    gap:45px;
+    align-items:center;
+    position:relative;
+    overflow:hidden;
+    background:
+        radial-gradient(
+            circle at 20% 15%,
+            rgba(198,167,123,.12),
+            transparent 32%
+        ),
+        #060606;
+}
+
+.hero:after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0,0,0,.75),
+            transparent 65%
+        );
+    pointer-events:none;
+}
+
+.hero-content{
+    position:relative;
+    z-index:5;
+}
+
+.label{
+    font-size:9px;
+    color:var(--gold);
+    text-transform:uppercase;
+    letter-spacing:4px;
+    margin-bottom:19px;
+}
+
+.hero h1{
+    font-family:"Cormorant Garamond",serif;
+    font-size:clamp(70px,8vw,125px);
+    line-height:.76;
+    font-weight:500;
+    letter-spacing:-5px;
+}
+
+.hero h1 span{
+    display:block;
+    margin-left:45px;
+    color:#d5c0aa;
+    font-style:italic;
+}
+
+.hero p{
+    max-width:410px;
+    color:#a7a09a;
+    line-height:1.8;
+    font-size:12px;
+    margin:31px 0;
+}
+
+.hero-gallery{
+    height:650px;
+    position:relative;
+    z-index:3;
+}
+
+.hero-main{
+    width:75%;
+    height:100%;
+    margin-left:auto;
+    overflow:hidden;
+    position:relative;
+    border-radius:2px;
+    box-shadow:0 30px 90px rgba(0,0,0,.75);
+}
+
+.hero-main:after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0,0,0,.05),
+            rgba(0,0,0,.35)
+        );
+}
+
+.hero-main img{
+    transition:1.2s;
+}
+
+.hero-main:hover img{
+    transform:scale(1.06);
+}
+
+.hero-small{
+    position:absolute;
+    width:205px;
+    height:245px;
+    bottom:30px;
+    left:0;
+    border:7px solid var(--black);
+    overflow:hidden;
+    z-index:5;
+    box-shadow:0 20px 50px rgba(0,0,0,.8);
+}
+
+.hero-small img{
+    transition:1s;
+}
+
+.hero-small:hover img{
+    transform:scale(1.07);
+}
+
+.hero-circle{
+    position:absolute;
+    right:0;
+    bottom:5px;
+    width:110px;
+    height:110px;
+    border:1px solid var(--gold);
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:#d1b58b;
+    font-family:"Cormorant Garamond",serif;
+    font-size:16px;
+    line-height:1.05;
+    background:rgba(5,5,5,.25);
+    backdrop-filter:blur(4px);
+    z-index:6;
+}
+
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+.intro{
+    padding:80px 7%;
+    background:
+        linear-gradient(
+            90deg,
+            #0d0c0b,
+            #12100e,
+            #0d0c0b
+        );
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    text-align:center;
+}
+
+.intro-inner{
+    max-width:850px;
+    margin:auto;
+}
+
+.intro-text{
+    font-family:"Cormorant Garamond",serif;
+    font-size:clamp(34px,4.2vw,58px);
+    line-height:1.06;
+}
+
+.intro-text em{
+    color:var(--gold);
+}
+
+
+/* =========================================================
+   GENERAL SECTIONS
+========================================================= */
+
+section{
+    padding:105px 7%;
+}
+
+.section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+    margin-bottom:45px;
+}
+
+.section-number{
+    font-size:9px;
+    color:var(--gold);
+    letter-spacing:3px;
+    margin-bottom:9px;
+}
+
+.section-title{
+    font-family:"Cormorant Garamond",serif;
+    font-size:clamp(55px,6vw,85px);
+    font-weight:500;
+    line-height:.82;
+}
+
+.section-description{
+    max-width:320px;
+    color:#89827c;
+    line-height:1.8;
+    font-size:11px;
+}
+
+
+/* =========================================================
+   MOODS
+========================================================= */
+
+.moods{
+    background:#060606;
+}
+
+.mood-grid{
+    display:grid;
+    grid-template-columns:repeat(12,1fr);
+    gap:10px;
+}
+
+.mood{
+    height:310px;
+    grid-column:span 4;
+    position:relative;
+    overflow:hidden;
+    cursor:pointer;
+    border:1px solid rgba(255,255,255,.12);
+}
+
+.mood:nth-child(2){
+    grid-column:span 4;
+}
+
+.mood:nth-child(3){
+    grid-column:span 4;
+}
+
+.mood:nth-child(4){
+    grid-column:span 4;
+}
+
+.mood:nth-child(5){
+    grid-column:span 4;
+}
+
+.mood:nth-child(6){
+    grid-column:span 4;
+}
+
+.mood img{
+    transition:1s ease;
+    filter:brightness(.52) saturate(.82);
+}
+
+.mood:hover img{
+    transform:scale(1.08);
+    filter:brightness(.7) saturate(1);
+}
+
+.mood:after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+        linear-gradient(
+            transparent 30%,
+            rgba(0,0,0,.95)
+        );
+}
+
+.mood-info{
+    position:absolute;
+    z-index:6;
+    left:22px;
+    right:22px;
+    bottom:22px;
+}
+
+.mood-info small{
+    color:var(--gold);
+    letter-spacing:3px;
+    font-size:8px;
+}
+
+.mood-info h3{
+    font-family:"Cormorant Garamond",serif;
+    font-size:32px;
+    font-weight:500;
+    margin:5px 0;
+}
+
+.mood-info p{
+    color:#c4bcb4;
+    font-size:9px;
+    max-width:300px;
+    line-height:1.6;
+}
+
+
+/* =========================================================
+   RAIN
+========================================================= */
+
+.rain:before{
+    content:"";
+    position:absolute;
+    inset:0;
+    z-index:3;
+    background:
+        repeating-linear-gradient(
+            115deg,
+            transparent 0,
+            transparent 10px,
+            rgba(255,255,255,.14) 11px,
+            transparent 12px
+        );
+    animation:rainMove 1s linear infinite;
+    pointer-events:none;
+}
+
+@keyframes rainMove{
+    from{
+        background-position:0 0;
+    }
+    to{
+        background-position:-50px 100px;
+    }
+}
+
+
+/* =========================================================
+   NIGHT — NEW CINEMATIC VERSION
+========================================================= */
+
+.night{
+    background:#08090d;
+}
+
+.night img{
+    filter:
+        brightness(.36)
+        saturate(.7)
+        contrast(1.12);
+}
+
+.night:hover img{
+    filter:
+        brightness(.5)
+        saturate(.85)
+        contrast(1.12);
+}
+
+.night .night-glow{
+    position:absolute;
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    right:80px;
+    top:40px;
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,235,188,.35),
+            rgba(255,235,188,.05) 40%,
+            transparent 70%
+        );
+    z-index:2;
+}
+
+.night .moon{
+    position:absolute;
+    z-index:5;
+    top:48px;
+    right:82px;
+    width:58px;
+    height:58px;
+    border-radius:50%;
+    background:#f6e9cf;
+    box-shadow:
+        0 0 20px rgba(255,239,199,.8),
+        0 0 70px rgba(255,239,199,.25);
+}
+
+.night .stars{
+    position:absolute;
+    inset:0;
+    z-index:4;
+    pointer-events:none;
+}
+
+.star{
+    position:absolute;
+    width:2px;
+    height:2px;
+    background:#fff;
+    border-radius:50%;
+    animation:twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle{
+    from{
+        opacity:.15;
+        transform:scale(.7);
+    }
+    to{
+        opacity:1;
+        transform:scale(1.5);
+    }
+}
+
+
+/* =========================================================
+   FOOD
+========================================================= */
+
+.food:before{
+    content:"";
+    position:absolute;
+    width:230px;
+    height:230px;
+    right:-70px;
+    bottom:-90px;
+    background:#d69b4c;
+    filter:blur(90px);
+    opacity:.25;
+    z-index:1;
+}
+
+
+/* =========================================================
+   RED ROSES
+========================================================= */
+
+.roses img{
+    filter:
+        brightness(.48)
+        saturate(1.35)
+        contrast(1.1);
+}
+
+.roses:hover img{
+    filter:
+        brightness(.62)
+        saturate(1.45)
+        contrast(1.08);
+}
+
+.roses:before{
+    content:"🌹";
+    position:absolute;
+    z-index:7;
+    top:20px;
+    right:20px;
+    font-size:30px;
+    filter:drop-shadow(0 4px 8px #000);
+}
+
+
+/* =========================================================
+   BEAUTY
+========================================================= */
+
+.beauty{
+    background:#eee4d8;
+    color:#191512;
+    padding-top:90px;
+    padding-bottom:90px;
+}
+
+.beauty-layout{
+    display:grid;
+    grid-template-columns:1.35fr .65fr;
+    gap:55px;
+    align-items:center;
+}
+
+.beauty-image{
+    height:520px;
+    position:relative;
+    overflow:hidden;
+}
+
+.beauty-image img{
+    transition:1s;
+}
+
+.beauty-image:hover img{
+    transform:scale(1.04);
+}
+
+.beauty-image:after{
+    content:"";
+    position:absolute;
+    inset:18px;
+    border:1px solid rgba(255,255,255,.65);
+    pointer-events:none;
+}
+
+.beauty-content{
+    padding-right:20px;
+}
+
+.beauty-content .label{
+    color:#7d6143;
+}
+
+.beauty-content h2{
+    font-family:"Cormorant Garamond",serif;
+    font-size:clamp(55px,6vw,85px);
+    line-height:.82;
+    font-weight:500;
+    margin-bottom:25px;
+}
+
+.beauty-content p{
+    color:#625a53;
+    font-size:11px;
+    line-height:1.85;
+    margin-bottom:24px;
+}
+
+.beauty-note{
+    border-left:1px solid #967653;
+    padding:13px 18px;
+    font-family:"Cormorant Garamond",serif;
+    font-size:19px;
+    line-height:1.2;
+    color:#41372f;
+    margin-bottom:25px;
+}
+
+
+/* =========================================================
+   ALONE TIME
+========================================================= */
+
+.alone{
+    background:#080807;
+}
+
+.alone-layout{
+    display:grid;
+    grid-template-columns:.8fr 1.2fr;
+    gap:60px;
+    align-items:center;
+}
+
+.alone-image{
+    height:550px;
+    position:relative;
+    overflow:hidden;
+}
+
+.alone-image img{
+    transition:1s;
+    filter:brightness(.65);
+}
+
+.alone-image:hover img{
+    transform:scale(1.05);
+    filter:brightness(.78);
+}
+
+.alone-image:after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+        linear-gradient(
+            to top,
+            rgba(0,0,0,.8),
+            transparent 60%
+        );
+}
+
+.rose-badge{
+    position:absolute;
+    width:90px;
+    height:90px;
+    right:18px;
+    bottom:20px;
+    border-radius:50%;
+    border:1px solid var(--gold);
+    background:rgba(5,5,5,.7);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:35px;
+    z-index:4;
+}
+
+.alone-content h2{
+    font-family:"Cormorant Garamond",serif;
+    font-size:clamp(65px,7vw,100px);
+    line-height:.77;
+    font-weight:500;
+}
+
+.alone-content p{
+    color:#9c948d;
+    max-width:530px;
+    font-size:11px;
+    line-height:1.9;
+    margin:25px 0;
+}
+
+
+/* =========================================================
+   MUSIC PLAYER
+========================================================= */
+
+.music-box{
+    max-width:430px;
+    border:1px solid var(--line);
+    padding:14px;
+    display:flex;
+    align-items:center;
+    gap:15px;
+    background:rgba(255,255,255,.02);
+}
+
+.music-cover{
+    width:52px;
+    height:52px;
+    border-radius:50%;
+    overflow:hidden;
+    flex-shrink:0;
+}
+
+.music-cover img{
+    object-fit:cover;
+}
+
+.music-info{
+    flex:1;
+}
+
+.music-info strong{
+    display:block;
+    font-size:11px;
+    font-weight:500;
+}
+
+.music-info span{
+    display:block;
+    font-size:8px;
+    color:#777;
+    margin-top:4px;
+}
+
+.play{
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    border:1px solid var(--gold);
+    color:var(--gold);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:10px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.play:hover{
+    background:var(--gold);
+    color:#111;
+}
+
+
+/* =========================================================
+   BLACK
+========================================================= */
+
+.black{
+    background:#030303;
+    padding-top:85px;
+    padding-bottom:85px;
+}
+
+.black-layout{
+    display:grid;
+    grid-template-columns:1.15fr .85fr;
+    gap:55px;
+    align-items:center;
+}
+
+.black-picture{
+    height:570px;
+    position:relative;
+    overflow:hidden;
+    background:#050505;
+}
+
+.black-picture img{
+    filter:
+        brightness(.33)
+        grayscale(1)
+        contrast(1.15);
+    transition:1s;
+}
+
+.black-picture:hover img{
+    transform:scale(1.05);
+    filter:
+        brightness(.45)
+        grayscale(1)
+        contrast(1.1);
+}
+
+.black-picture:after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+        linear-gradient(
+            to top,
+            rgba(0,0,0,.96),
+            transparent 65%
+        );
+}
+
+.black-label{
+    position:absolute;
+    z-index:5;
+    top:20px;
+    left:20px;
+    border:1px solid rgba(255,255,255,.3);
+    padding:8px 12px;
+    font-size:8px;
+    text-transform:uppercase;
+    letter-spacing:3px;
+}
+
+.black-heading{
+    position:absolute;
+    z-index:5;
+    bottom:35px;
+    left:35px;
+}
+
+.black-heading h2{
+    font-family:"Cormorant Garamond",serif;
+    font-size:85px;
+    line-height:.75;
+    font-weight:500;
+}
+
+.black-content h2{
+    font-family:"Cormorant Garamond",serif;
+    font-size:75px;
+    line-height:.78;
+    font-weight:500;
+    margin-bottom:25px;
+}
+
+.black-content p{
+    color:#85807a;
+    font-size:11px;
+    line-height:1.9;
+    margin-bottom:25px;
+}
+
+
+/* =========================================================
+   LITTLE THINGS
+========================================================= */
+
+.little{
+    background:#eee5da;
+    color:#171411;
+    padding-top:75px;
+    padding-bottom:75px;
+}
+
+.little .section-number{
+    color:#806346;
+}
+
+.little .section-description{
+    color:#776f68;
+}
+
+.little-grid{
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    gap:12px;
+}
+
+.little-card{
+    height:210px;
+    grid-column:span 1;
+    position:relative;
+    overflow:hidden;
+}
+
+.little-card:nth-child(1),
+.little-card:nth-child(2){
+    grid-column:span 1;
+}
+
+.little-card img{
+    transition:1s;
+    filter:brightness(.75);
+}
+
+.little-card:hover img{
+    transform:scale(1.08);
+    filter:brightness(.9);
+}
+
+.little-card:after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+        linear-gradient(
+            transparent 30%,
+            rgba(0,0,0,.85)
+        );
+}
+
+.little-info{
+    position:absolute;
+    z-index:5;
+    left:15px;
+    bottom:15px;
+    color:#fff;
+}
+
+.little-info h3{
+    font-family:"Cormorant Garamond",serif;
+    font-size:25px;
+    font-weight:500;
+}
+
+.little-info p{
+    font-size:7px;
+    color:#ddd;
+    margin-top:3px;
+}
+
+
+/* =========================================================
+   QUOTE
+========================================================= */
+
+.quote{
+    min-height:430px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+    background:
+        linear-gradient(
+            rgba(0,0,0,.55),
+            rgba(0,0,0,.9)
+        ),
+        url("https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=1800&q=85")
+        center/cover fixed;
+}
+
+.quote:after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+        radial-gradient(
+            circle at center,
+            transparent,
+            rgba(0,0,0,.45)
+        );
+}
+
+.quote-inner{
+    position:relative;
+    z-index:3;
+    max-width:800px;
+}
+
+.quote-mark{
+    font-family:"Cormorant Garamond",serif;
+    color:var(--gold);
+    font-size:80px;
+    line-height:.5;
+}
+
+.quote h2{
+    font-family:"Cormorant Garamond",serif;
+    font-size:clamp(42px,5vw,68px);
+    font-weight:400;
+    line-height:.95;
+}
+
+.quote p{
+    margin-top:20px;
+    color:#aaa;
+    font-size:8px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+}
+
+
+/* =========================================================
+   ABOUT
+========================================================= */
+
+.about{
+    background:#0d0c0b;
+}
+
+.about-layout{
+    display:grid;
+    grid-template-columns:.7fr 1.3fr;
+    gap:65px;
+    align-items:center;
+}
+
+.about-image{
+    height:500px;
+    overflow:hidden;
+    position:relative;
+}
+
+.about-image img{
+    transition:1s;
+    filter:brightness(.65);
+}
+
+.about-image:hover img{
+    transform:scale(1.05);
+    filter:brightness(.78);
+}
+
+.about-image:after{
+    content:"";
+    position:absolute;
+    inset:15px;
+    border:1px solid rgba(255,255,255,.3);
+}
+
+.about-content h2{
+    font-family:"Cormorant Garamond",serif;
+    font-size:clamp(55px,6vw,85px);
+    line-height:.78;
+    font-weight:500;
+    margin-bottom:28px;
+}
+
+.about-content p{
+    color:#aaa29b;
+    max-width:580px;
+    font-size:11px;
+    line-height:1.9;
+    margin-bottom:18px;
+}
+
+.tags{
+    display:flex;
+    gap:7px;
+    flex-wrap:wrap;
+    margin:25px 0;
+}
+
+.tag{
+    padding:8px 13px;
+    border:1px solid var(--line);
+    border-radius:50px;
+    color:#aaa;
+    font-size:8px;
+    letter-spacing:1px;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer{
+    background:#040404;
+    text-align:center;
+    padding:60px 7% 25px;
+    border-top:1px solid var(--line);
+}
+
+.footer-logo{
+    font-family:"Cormorant Garamond",serif;
+    font-size:43px;
+}
+
+.footer-text{
+    color:#666;
+    max-width:430px;
+    margin:12px auto 25px;
+    line-height:1.7;
+    font-size:10px;
+}
+
+.footer-bottom{
+    border-top:1px solid var(--line);
+    padding-top:20px;
+    color:#555;
+    font-size:8px;
+    letter-spacing:3px;
+}
+
+
+/* =========================================================
+   FLOATING SHOOTING STAR
+========================================================= */
+
+.shooting-star{
+    position:fixed;
+    width:80px;
+    height:1px;
+    background:linear-gradient(90deg,transparent,#fff,transparent);
+    transform:rotate(-35deg);
+    top:18%;
+    left:-120px;
+    opacity:0;
+    pointer-events:none;
+    z-index:999;
+}
+
+.shooting-star.go{
+    animation:shoot 4s ease forwards;
+}
+
+@keyframes shoot{
+    0%{
+        left:-120px;
+        top:15%;
+        opacity:0;
+    }
+    15%{
+        opacity:1;
+    }
+    100%{
+        left:110%;
+        top:45%;
+        opacity:0;
+    }
+}
+
+
+/* =========================================================
+   REVEAL
+========================================================= */
+
+.reveal{
+    opacity:0;
+    transform:translateY(35px);
+    transition:
+        opacity 1s ease,
+        transform 1s ease;
+}
+
+.reveal.active{
+    opacity:1;
+    transform:translateY(0);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:1000px){
+
+    .hero{
+        grid-template-columns:1fr;
+        padding-top:140px;
+    }
+
+    .hero-gallery{
+        height:560px;
+        margin-top:20px;
+    }
+
+    .beauty-layout{
+        grid-template-columns:1fr;
+    }
+
+    .beauty-image{
+        height:500px;
+    }
+
+    .alone-layout{
+        grid-template-columns:1fr;
+    }
+
+    .alone-image{
+        height:520px;
+    }
+
+    .black-layout{
+        grid-template-columns:1fr;
+    }
+
+    .black-picture{
+        height:550px;
+    }
+
+    .about-layout{
+        grid-template-columns:1fr;
+    }
+
+    .about-image{
+        height:500px;
+    }
+
+    .little-grid{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+    .little-card{
+        grid-column:span 1;
+    }
+
+}
+
+
+@media(max-width:800px){
+
+    .cursor,
+    .cursor-ring{
+        display:none;
+    }
+
+    .menu{
+        display:block;
+        z-index:2002;
+    }
+
+    .nav-links{
+        position:fixed;
+        top:0;
+        right:-100%;
+        width:75%;
+        height:100vh;
+        background:#090909;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+        gap:30px;
+        transition:.5s;
+        border-left:1px solid var(--line);
+    }
+
+    .nav-links.active{
+        right:0;
+    }
+
+    .mood-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .mood,
+    .mood:nth-child(2),
+    .mood:nth-child(3),
+    .mood:nth-child(4),
+    .mood:nth-child(5),
+    .mood:nth-child(6){
+        grid-column:span 1;
+        height:320px;
+    }
+
+}
+
+
+@media(max-width:600px){
+
+    section{
+        padding:80px 6%;
+    }
+
+    .navbar{
+        padding:20px 6%;
+    }
+
+    .hero{
+        padding-left:6%;
+        padding-right:6%;
+        padding-top:130px;
+    }
+
+    .hero h1{
+        font-size:65px;
+        letter-spacing:-3px;
+    }
+
+    .hero h1 span{
+        margin-left:12px;
+    }
+
+    .hero-gallery{
+        height:460px;
+    }
+
+    .hero-main{
+        width:78%;
+    }
+
+    .hero-small{
+        width:140px;
+        height:185px;
+    }
+
+    .hero-circle{
+        width:82px;
+        height:82px;
+        font-size:11px;
+    }
+
+    .section-head{
+        display:block;
+    }
+
+    .section-description{
+        margin-top:18px;
+    }
+
+    .mood-grid{
+        grid-template-columns:1fr;
+    }
+
+    .mood,
+    .mood:nth-child(2),
+    .mood:nth-child(3),
+    .mood:nth-child(4),
+    .mood:nth-child(5),
+    .mood:nth-child(6){
+        grid-column:span 1;
+        height:390px;
+    }
+
+    .beauty-image{
+        height:440px;
+    }
+
+    .alone-image{
+        height:450px;
+    }
+
+    .black-picture{
+        height:470px;
+    }
+
+    .black-heading{
+        left:22px;
+        bottom:25px;
+    }
+
+    .black-heading h2{
+        font-size:65px;
+    }
+
+    .black-content h2{
+        font-size:60px;
+    }
+
+    .little-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .little-card{
+        height:220px;
+    }
+
+    .quote{
+        background-attachment:scroll;
+        min-height:390px;
+    }
+
+    .about-image{
+        height:450px;
+    }
+
+    .footer-logo{
+        font-size:34px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     LOADER
+========================================================= -->
+
+<div class="loader">
+
+    <h1>Muskan's World</h1>
+
+    <p>Things That Feel Like Me</p>
+
+    <div class="loader-line"></div>
+
+</div>
+
+
+<div class="cursor"></div>
+<div class="cursor-ring"></div>
+
+<div class="shooting-star"></div>
+
+
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
+
+<nav class="navbar">
+
+    <a href="#home" class="logo">M.</a>
+
+    <div class="nav-links">
+
+        <a href="#home">Home</a>
+        <a href="#moods">Moods</a>
+        <a href="#beauty">Beauty</a>
+        <a href="#alone">Alone Time</a>
+        <a href="#about">About</a>
+
+    </div>
+
+    <div class="menu">☰</div>
+
+</nav>
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section class="hero" id="home">
+
+    <div class="hero-content reveal">
+
+        <div class="label">
+            A little world of mine
+        </div>
+
+        <h1>
+            Things
+            <span>That Feel</span>
+            Like Me.
+        </h1>
+
+        <p>
+            A quiet collection of flowers,
+            peaceful nights, delicious food,
+            modest beauty, music and
+            little moments that feel special.
+        </p>
+
+        <div class="buttons">
+
+            <a href="#moods" class="btn btn-gold">
+                Explore My World →
+            </a>
+
+            <a href="#about" class="btn">
+                About Me
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="hero-gallery reveal">
+
+        <div class="hero-main">
+
+            <img
+                src="https://images.pexels.com/photos/17057783/pexels-photo-17057783.jpeg?auto=compress&cs=tinysrgb&w=1600"
+                alt="Elegant woman wearing black niqab and abaya"
+            >
+
+        </div>
+
+
+        <div class="hero-small">
+
+            <img
+                src="https://images.pexels.com/photos/19298248/pexels-photo-19298248.jpeg?auto=compress&cs=tinysrgb&w=900"
+                alt="Elegant black niqab aesthetic"
+            >
+
+        </div>
+
+
+        <div class="hero-circle">
+
+            modest<br>
+            beautiful<br>
+            timeless
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     INTRO
+========================================================= -->
+
+<section class="intro">
+
+    <div class="intro-inner reveal">
+
+        <div class="label">
+            01 — My little universe
+        </div>
+
+        <div class="intro-text">
+
+            I find beauty in
+            <em>quiet moments</em>,
+            soft colors and
+            little things that
+            don't need to be loud.
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     MOODS
+========================================================= -->
+
+<section class="moods" id="moods">
+
+    <div class="section-head reveal">
+
+        <div>
+
+            <div class="section-number">
+                02 — Favorite moods
+            </div>
+
+            <h2 class="section-title">
+                My Moods
+            </h2>
+
+        </div>
+
+        <p class="section-description">
+
+            The colors, places, food and feelings
+            that somehow always feel like home.
+
+        </p>
+
+    </div>
+
+
+    <div class="mood-grid">
+
+
+        <!-- RAIN -->
+
+        <div class="mood rain reveal">
+
+            <img
+                src="https://images.pexels.com/photos/19298225/pexels-photo-19298225.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                alt="Woman in black niqab"
+            >
+
+            <div class="mood-info">
+
+                <small>01</small>
+
+                <h3>Rain</h3>
+
+                <p>
+                    Rainy weather, quiet thoughts
+                    and the peaceful feeling of
+                    watching everything through a window.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- NIGHT -->
+
+        <div class="mood night reveal">
+
+            <img
+                src="https://images.pexels.com/photos/30357322/pexels-photo-30357322.jpeg?auto=compress&cs=tinysrgb&w=1400"
+                alt="Woman in black niqab near the sea"
+            >
+
+            <div class="night-glow"></div>
+
+            <div class="stars"></div>
+
+            <div class="moon"></div>
+
+            <div class="mood-info">
+
+                <small>02</small>
+
+                <h3>Night</h3>
+
+                <p>
+                    Moonlight, stars and a quiet
+                    soul enjoying the beauty of the night.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- FOOD -->
+
+        <div class="mood food reveal">
+
+            <img
+                src="https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=1400&q=85"
+                alt="Biryani with raita"
+            >
+
+            <div class="mood-info">
+
+                <small>03</small>
+
+                <h3>Biryani & Raita</h3>
+
+                <p>
+                    Warm biryani, cool raita
+                    and instant happiness.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- RED ROSES ONLY -->
+
+        <div class="mood roses reveal">
+
+            <img
+                src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=1400&q=90"
+                alt="Deep red roses"
+            >
+
+            <div class="mood-info">
+
+                <small>04</small>
+
+                <h3>Red Roses</h3>
+
+                <p>
+                    Deep red roses —
+                    elegant, romantic and timeless.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- MUSIC -->
+
+        <div class="mood reveal">
+
+            <img
+                src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=1400&q=85"
+                alt="Black headphones and music"
+            >
+
+            <div class="mood-info">
+
+                <small>05</small>
+
+                <h3>Music</h3>
+
+                <p>
+                    Headphones on.
+                    Everything else becomes quiet.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- BLACK -->
+
+        <div class="mood reveal">
+
+            <img
+                src="https://images.pexels.com/photos/7816725/pexels-photo-7816725.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                alt="Woman wearing black hijab and abaya"
+            >
+
+            <div class="mood-info">
+
+                <small>06</small>
+
+                <h3>Black</h3>
+
+                <p>
+                    Dark, elegant, modest
+                    and quietly powerful.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     BEAUTY
+========================================================= -->
+
+<section class="beauty" id="beauty">
+
+    <div class="beauty-layout">
+
+        <div class="beauty-image reveal">
+
+            <img
+                src="https://images.pexels.com/photos/8995836/pexels-photo-8995836.jpeg?auto=compress&cs=tinysrgb&w=1500"
+                alt="Women in hijab having dinner by the sea"
+            >
+
+        </div>
+
+
+        <div class="beauty-content reveal">
+
+            <div class="label">
+                03 — Beauty
+            </div>
+
+            <h2>
+                Light Dinner<br>
+                <em>By The Sea.</em>
+            </h2>
+
+            <p>
+
+                Warm lights, the sound of the sea,
+                an elegant table, good food and
+                a peaceful evening.
+
+            </p>
+
+            <div class="beauty-note">
+
+                “Some evenings are beautiful
+                simply because they feel peaceful.”
+
+            </div>
+
+            <a href="#alone" class="btn">
+                See More Beauty →
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     ALONE TIME
+========================================================= -->
+
+<section class="alone" id="alone">
+
+    <div class="alone-layout">
+
+
+        <div class="alone-content reveal">
+
+            <div class="label">
+                04 — Alone Time
+            </div>
+
+            <h2>
+                Quiet<br>
+                Feels Good.
+            </h2>
+
+            <p>
+
+                Sometimes peace is simply sitting
+                somewhere beautiful, listening to music,
+                looking at flowers and enjoying your
+                own little world.
+
+            </p>
+
+
+            <div class="music-box">
+
+                <div class="music-cover">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=300&q=80"
+                        alt="Music"
+                    >
+
+                </div>
+
+                <div class="music-info">
+
+                    <strong>
+                        My Quiet Playlist
+                    </strong>
+
+                    <span>
+                        soft music • peaceful evening
+                    </span>
+
+                </div>
+
+                <div class="play">
+                    ▶
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="alone-image reveal">
+
+            <img
+                src="https://images.pexels.com/photos/5974066/pexels-photo-5974066.jpeg?auto=compress&cs=tinysrgb&w=1500"
+                alt="Woman in hijab enjoying peaceful seaside moment"
+            >
+
+            <div class="rose-badge">
+                🌹
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     BLACK
+========================================================= -->
+
+<section class="black">
+
+    <div class="black-layout">
+
+
+        <div class="black-picture reveal">
+
+            <img
+                src="https://images.pexels.com/photos/19298225/pexels-photo-19298225.jpeg?auto=compress&cs=tinysrgb&w=1500"
+                alt="Elegant woman wearing black niqab and abaya"
+            >
+
+            <div class="black-label">
+                modest • dark • elegant
+            </div>
+
+            <div class="black-heading">
+
+                <h2>
+                    All<br>
+                    Black.
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="black-content reveal">
+
+            <div class="label">
+                05 — Black
+            </div>
+
+            <h2>
+                Dark.<br>
+                Elegant.<br>
+                Quiet.
+            </h2>
+
+            <p>
+
+                Black doesn't have to be loud.
+                A flowing black abaya, a black niqab,
+                soft shadows and a little mystery
+                can create something beautiful.
+
+            </p>
+
+            <a href="#little" class="btn btn-gold">
+                See Little Things →
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     LITTLE THINGS
+========================================================= -->
+
+<section class="little" id="little">
+
+    <div class="section-head reveal">
+
+        <div>
+
+            <div class="section-number">
+                06 — Little things
+            </div>
+
+            <h2 class="section-title">
+                Things I Love
+            </h2>
+
+        </div>
+
+        <p class="section-description">
+
+            Small details that can make
+            an ordinary day feel special.
+
+        </p>
+
+    </div>
+
+
+    <div class="little-grid">
+
+
+        <!-- RED ROSES -->
+
+        <div class="little-card reveal">
+
+            <img
+                src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=900&q=90"
+                alt="Red roses"
+            >
+
+            <div class="little-info">
+
+                <h3>Flowers</h3>
+
+                <p>
+                    Deep red roses and soft moments.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- SEA -->
+
+        <div class="little-card reveal">
+
+            <img
+                src="https://images.pexels.com/photos/13428257/pexels-photo-13428257.jpeg?auto=compress&cs=tinysrgb&w=1000"
+                alt="Woman in hijab beside the sea"
+            >
+
+            <div class="little-info">
+
+                <h3>Peace</h3>
+
+                <p>
+                    Sea breeze and quiet thoughts.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- MUSIC -->
+
+        <div class="little-card reveal">
+
+            <img
+                src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=900&q=85"
+                alt="Headphones and music"
+            >
+
+            <div class="little-info">
+
+                <h3>Music</h3>
+
+                <p>
+                    Headphones and disappearing for a while.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- SUNSET -->
+
+        <div class="little-card reveal">
+
+            <img
+                src="https://images.pexels.com/photos/8575821/pexels-photo-8575821.jpeg?auto=compress&cs=tinysrgb&w=1000"
+                alt="Woman in hijab during golden hour"
+            >
+
+            <div class="little-info">
+
+                <h3>Sunset</h3>
+
+                <p>
+                    Soft light and peaceful skies.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- MODESTY -->
+
+        <div class="little-card reveal">
+
+            <img
+                src="https://images.pexels.com/photos/17057783/pexels-photo-17057783.jpeg?auto=compress&cs=tinysrgb&w=1000"
+                alt="Woman in black niqab and abaya"
+            >
+
+            <div class="little-info">
+
+                <h3>Modesty</h3>
+
+                <p>
+                    Simple, graceful and timeless.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- STARS -->
+
+        <div class="little-card reveal">
+
+            <img
+                src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=1000&q=85"
+                alt="Beautiful night sky"
+            >
+
+            <div class="little-info">
+
+                <h3>Stars</h3>
+
+                <p>
+                    Looking up when everything feels loud.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     QUOTE
+========================================================= -->
+
+<section class="quote">
+
+    <div class="quote-inner reveal">
+
+        <div class="quote-mark">
+            “
+        </div>
+
+        <h2>
+
+            Maybe life is really
+            about collecting
+            little beautiful moments.
+
+        </h2>
+
+        <p>
+            Things That Feel Like Me
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     ABOUT
+========================================================= -->
+
+<section class="about" id="about">
+
+    <div class="about-layout">
+
+
+        <div class="about-image reveal">
+
+            <img
+                src="https://images.pexels.com/photos/19298248/pexels-photo-19298248.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                alt="Elegant woman wearing black niqab"
+            >
+
+        </div>
+
+
+        <div class="about-content reveal">
+
+            <div class="label">
+                07 — About this little world
+            </div>
+
+            <h2>
+
+                A little quiet.<br>
+                A little dreamy.<br>
+                Completely me.
+
+            </h2>
+
+            <p>
+
+                I'm Muskan — a student, a creative soul
+                and a web development enthusiast who
+                loves turning ideas into beautiful designs.
+
+            </p>
+
+            <p>
+
+                This website is not just a portfolio.
+                It's a tiny digital moodboard of colors,
+                places, flowers, food, music and moments
+                that feel special to me.
+
+            </p>
+
+
+            <div class="tags">
+
+                <span class="tag">Dreamy</span>
+                <span class="tag">Creative</span>
+                <span class="tag">Flowers</span>
+                <span class="tag">Night</span>
+                <span class="tag">Music</span>
+                <span class="tag">Food</span>
+                <span class="tag">Modest</span>
+                <span class="tag">Peace</span>
+
+            </div>
+
+
+            <div class="buttons">
+
+                <a href="#home" class="btn btn-gold">
+                    Back To Top ↑
+                </a>
+
+                <a href="#moods" class="btn">
+                    Explore Again →
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+    <div class="footer-logo">
+        Things That Feel Like Me.
+    </div>
+
+    <p class="footer-text">
+
+        A little collection of beautiful things,
+        quiet moments and everything that
+        feels like me.
+
+    </p>
+
+    <div class="footer-bottom">
+
+        © 2026 Muskan — Made with ♡
+
+    </div>
+
+</footer>
+
+
+<script>
+
+/* =========================================================
+   LOADER
+========================================================= */
+
+window.addEventListener("load",()=>{
+
+    setTimeout(()=>{
+
+        document.querySelector(".loader")
+        .classList.add("hide");
+
+    },900);
+
+});
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+const navbar=document.querySelector(".navbar");
+
+window.addEventListener("scroll",()=>{
+
+    if(window.scrollY>60){
+
+        navbar.classList.add("scrolled");
+
+    }else{
+
+        navbar.classList.remove("scrolled");
+
+    }
+
+});
+
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+const menu=document.querySelector(".menu");
+const navLinks=document.querySelector(".nav-links");
+
+menu.addEventListener("click",()=>{
+
+    navLinks.classList.toggle("active");
+
+});
+
+document.querySelectorAll(".nav-links a").forEach(link=>{
+
+    link.addEventListener("click",()=>{
+
+        navLinks.classList.remove("active");
+
+    });
+
+});
+
+
+/* =========================================================
+   SCROLL REVEAL
+========================================================= */
+
+const revealItems=document.querySelectorAll(".reveal");
+
+const observer=new IntersectionObserver(
+
+(entries)=>{
+
+    entries.forEach(entry=>{
+
+        if(entry.isIntersecting){
+
+            entry.target.classList.add("active");
+
+        }
+
+    });
+
+},
+
+{
+    threshold:.12
+}
+
+);
+
+revealItems.forEach(item=>{
+
+    observer.observe(item);
+
+});
+
+
+/* =========================================================
+   NIGHT STARS
+========================================================= */
+
+const stars=document.querySelector(".stars");
+
+if(stars){
+
+    for(let i=0;i<65;i++){
+
+        const star=document.createElement("span");
+
+        star.className="star";
+
+        star.style.left=Math.random()*100+"%";
+
+        star.style.top=Math.random()*78+"%";
+
+        star.style.animationDelay=
+        Math.random()*3+"s";
+
+        star.style.opacity=
+        Math.random();
+
+        stars.appendChild(star);
+
+    }
+
+}
+
+
+/* =========================================================
+   CUSTOM CURSOR
+========================================================= */
+
+const cursor=document.querySelector(".cursor");
+const cursorRing=document.querySelector(".cursor-ring");
+
+window.addEventListener("mousemove",(e)=>{
+
+    cursor.style.left=e.clientX+"px";
+    cursor.style.top=e.clientY+"px";
+
+    cursorRing.style.left=e.clientX+"px";
+    cursorRing.style.top=e.clientY+"px";
+
+});
+
+
+/* =========================================================
+   IMAGE 3D HOVER
+========================================================= */
+
+document.querySelectorAll(
+    ".mood,.little-card,.hero-main,.beauty-image,.alone-image,.black-picture,.about-image"
+).forEach(card=>{
+
+    card.addEventListener("mousemove",(e)=>{
+
+        if(window.innerWidth<900) return;
+
+        const rect=card.getBoundingClientRect();
+
+        const x=e.clientX-rect.left;
+        const y=e.clientY-rect.top;
+
+        const rx=(y-rect.height/2)/45;
+        const ry=(rect.width/2-x)/45;
+
+        card.style.transform=
+        `perspective(900px)
+         rotateX(${rx}deg)
+         rotateY(${ry}deg)`;
+
+    });
+
+    card.addEventListener("mouseleave",()=>{
+
+        card.style.transform="";
+
+    });
+
+});
+
+
+/* =========================================================
+   BUTTON MAGNETIC EFFECT
+========================================================= */
+
+document.querySelectorAll(".btn").forEach(btn=>{
+
+    btn.addEventListener("mousemove",(e)=>{
+
+        if(window.innerWidth<900) return;
+
+        const rect=btn.getBoundingClientRect();
+
+        const x=
+        e.clientX-
+        rect.left-
+        rect.width/2;
+
+        const y=
+        e.clientY-
+        rect.top-
+        rect.height/2;
+
+        btn.style.transform=
+        `translate(${x*.08}px,${y*.08}px)`;
+
+    });
+
+    btn.addEventListener("mouseleave",()=>{
+
+        btn.style.transform="";
+
+    });
+
+});
+
+
+/* =========================================================
+   MUSIC BUTTON
+========================================================= */
+
+const play=document.querySelector(".play");
+
+let playing=false;
+
+play.addEventListener("click",()=>{
+
+    playing=!playing;
+
+    play.textContent=
+        playing ? "Ⅱ" : "▶";
+
+});
+
+
+/* =========================================================
+   SHOOTING STAR
+========================================================= */
+
+const shootingStar=
+document.querySelector(".shooting-star");
+
+function shootStar(){
+
+    shootingStar.classList.remove("go");
+
+    void shootingStar.offsetWidth;
+
+    shootingStar.classList.add("go");
+
+}
+
+setInterval(shootStar,8000);
+
+
+/* =========================================================
+   PARALLAX HERO
+========================================================= */
+
+window.addEventListener("scroll",()=>{
+
+    const heroImage=
+    document.querySelector(".hero-main");
+
+    if(!heroImage) return;
+
+    const scroll=
+    window.scrollY;
+
+    if(scroll<window.innerHeight){
+
+        heroImage.style.transform=
+        `translateY(${scroll*.06}px)`;
+
+    }
+
+});
+
+
+/* =========================================================
+   IMAGE LOAD FADE
+========================================================= */
+
+document.querySelectorAll("img").forEach(img=>{
+
+    img.addEventListener("load",()=>{
+
+        img.style.opacity="1";
+
+    });
+
+});
+
+
+/* =========================================================
+   SMOOTH ANCHOR FEEL
+========================================================= */
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
+
+    anchor.addEventListener("click",function(e){
+
+        const target=
+        document.querySelector(this.getAttribute("href"));
+
+        if(target){
+
+            e.preventDefault();
+
+            target.scrollIntoView({
+                behavior:"smooth"
+            });
+
+        }
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>
